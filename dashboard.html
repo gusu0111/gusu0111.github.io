@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 进阶看板</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --accent: #00cec9;
+            --bg: #0f0f1e;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 侧边栏布局 */
+        nav {
+            width: 240px;
+            background: rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            display: none; /* 默认手机端隐藏 */
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 玻璃感卡片 */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .status-badge {
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .log-entry {
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { opacity: 0.9; transform: scale(1.02); }
+
+        @media (min-width: 768px) {
+            nav { display: block; }
+        }
+
+        @media (max-width: 600px) {
+            .main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>项目导航</h2>
+        <p style="color: gray; font-size: 0.9rem;">Python 进阶之路</p>
+        <hr style="opacity: 0.1; margin: 20px 0;">
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin: 15px 0;">📂 Python 基础</li>
+            <li style="margin: 15px 0;">🤖 自动化脚本</li>
+            <li style="margin: 15px 0;">🎨 网页设计</li>
+            <li style="margin: 15px 0;">🌐 网站后端</li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header style="margin-bottom: 40px;">
+            <h1>你好，开发者 <span class="status-badge">今日已打卡</span></h1>
+            <p style="color: #a0a0a0;">今天是 2026年2月26日 | 学习第 14 天</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h3>📈 学习进度</h3>
+                <p>Python 基础: 85%</p>
+                <div style="background: #333; height: 8px; border-radius: 4px;">
+                    <div style="background: var(--accent); width: 85%; height: 100%; border-radius: 4px;"></div>
+                </div>
+                <p>网页设计: 40%</p>
+                <div style="background: #333; height: 8px; border-radius: 4px;">
+                    <div style="background: var(--primary); width: 40%; height: 100%; border-radius: 4px;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🛠 快捷操作</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button onclick="newLog()">新建学习日志</button>
+                    <button style="background: #444;" onclick="openNotion()">打开 Notion 日记</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📝 最近日志</h3>
+            <div class="log-entry">
+                <div style="font-size: 0.9rem; color: var(--accent);">2026-02-25</div>
+                <strong>掌握了 CSS 媒体查询 (Media Queries)</strong>
+                <p style="font-size: 0.9rem; color: #ccc;">成功让个人主页适配手机屏幕，解决了按钮堆叠问题。</p>
+            </div>
+            <div class="log-entry">
+                <div style="font-size: 0.9rem; color: var(--accent);">2026-02-24</div>
+                <strong>实现 Python 自动化文件分类</strong>
+                <p style="font-size: 0.9rem; color: #ccc;">编写了 os 和 shutil 脚本，一键整理下载文件夹。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function newLog() {
+            const topic = prompt("今天要记录什么新技能？");
+            if(topic) alert("记录成功！待 Notion 自动化联通后，这里将同步至云端。");
+        }
+        function openNotion() {
+            window.open("https://www.notion.so", "_blank");
+        }
+    </script>
+</body>
+</html>
